@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { prouductServices } from './products.services';
-import productsValidationSchema from './products.validation';
+import { productsSchema } from './products.validation';
 
 const createABike = async (req: Request, res: Response) => {
   try {
     const bikeData = req.body;
-    const zodParsedProductData = productsValidationSchema.parse(bikeData);
+    const zodParsedProductData = productsSchema.parse(bikeData);
     const result =
       await prouductServices.createBikeIntoDB(zodParsedProductData);
     res.status(200).json({

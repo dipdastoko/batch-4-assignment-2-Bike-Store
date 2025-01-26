@@ -3,10 +3,12 @@ import { TProducts } from './products.interface';
 
 const productsSchema = new Schema<TProducts>({
   name: { type: String, required: true },
+  productId: { type: Number, required: true, unique: true },
   brand: { type: String, required: true },
   price: { type: Number, required: true },
   category: {
     type: String,
+    enum: ['Mountain', 'Road', 'Hybrid', 'Electric'],
     required: true,
   },
   description: { type: String, required: true },
