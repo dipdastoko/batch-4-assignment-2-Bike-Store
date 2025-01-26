@@ -26,6 +26,45 @@ const createABike = async (req: Request, res: Response) => {
   }
 };
 
+const getAllBikes = async (req: Request, res: Response) => {
+  try {
+    const result = await prouductServices.getAllBikesfromDB();
+    res.status(200).json({
+      message: 'Bikes retrieved successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message || 'Something went wrong!',
+      success: false,
+      error: error,
+      stack: error.stack,
+    });
+  }
+};
+
+const getASpecificBike = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    const result = await prouductServices.getASpecificBike(productId);
+    res.status(200).json({
+      message: 'Bikes retrieved successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message || 'Something went wrong!',
+      success: false,
+      error: error,
+      stack: error.stack,
+    });
+  }
+};
+
 export const BikeControllers = {
   createABike,
+  getAllBikes,
+  getASpecificBike,
 };

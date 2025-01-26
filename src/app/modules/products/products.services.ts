@@ -6,6 +6,18 @@ const createBikeIntoDB = async (bikeData: TProducts) => {
   return result;
 };
 
+const getAllBikesfromDB = async () => {
+  const result = await ProductsModel.find();
+  return result;
+};
+
+const getASpecificBike = async (bikeId: string) => {
+  const result = await ProductsModel.findById(bikeId);
+  return result;
+};
+
 export const prouductServices = {
   createBikeIntoDB,
+  getAllBikesfromDB,
+  getASpecificBike,
 };
