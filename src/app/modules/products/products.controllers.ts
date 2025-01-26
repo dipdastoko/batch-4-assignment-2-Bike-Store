@@ -13,11 +13,12 @@ const createABike = async (req: Request, res: Response) => {
       success: true,
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
-      message: 'Something went wrong!',
+      message: error.message || 'Something went wrong!',
       success: false,
-      data: error,
+      error: error,
+      stack: error.stack,
     });
   }
 };
