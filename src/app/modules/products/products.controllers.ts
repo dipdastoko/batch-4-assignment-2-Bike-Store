@@ -87,9 +87,29 @@ const updateABike = async (req: Request, res: Response) => {
   }
 };
 
+const deleteABike = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    const result = await prouductServices.deleteABike(productId);
+    res.status(200).json({
+      message: 'Bike deleted successfully',
+      status: true,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message || 'Something went wrong!',
+      success: false,
+      error: error,
+      stack: error.stack,
+    });
+  }
+};
+
 export const BikeControllers = {
   createABike,
   getAllBikes,
   getASpecificBike,
   updateABike,
+  deleteABike,
 };

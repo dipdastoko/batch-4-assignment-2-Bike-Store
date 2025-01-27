@@ -17,10 +17,6 @@ const getASpecificBike = async (bikeId: string) => {
 };
 
 const updateABike = async (bikeId: string, updateProperties: object) => {
-  // const result = await ProductsModel.findById(bikeId);
-  // const filter = { name: 'Road Bike' };
-  // const update = { price: 100, quantity: 500 };
-  // const result = await ProductsModel.findOneAndUpdate(filter, update);
   const result = await ProductsModel.findByIdAndUpdate(
     bikeId,
     updateProperties,
@@ -29,9 +25,15 @@ const updateABike = async (bikeId: string, updateProperties: object) => {
   return result;
 };
 
+const deleteABike = async (bikeId: string) => {
+  const result = await ProductsModel.findByIdAndDelete(bikeId);
+  return result;
+};
+
 export const prouductServices = {
   createBikeIntoDB,
   getAllBikesfromDB,
   getASpecificBike,
   updateABike,
+  deleteABike,
 };
