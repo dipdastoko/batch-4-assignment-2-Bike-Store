@@ -16,8 +16,22 @@ const getASpecificBike = async (bikeId: string) => {
   return result;
 };
 
+const updateABike = async (bikeId: string, updateProperties: object) => {
+  // const result = await ProductsModel.findById(bikeId);
+  // const filter = { name: 'Road Bike' };
+  // const update = { price: 100, quantity: 500 };
+  // const result = await ProductsModel.findOneAndUpdate(filter, update);
+  const result = await ProductsModel.findByIdAndUpdate(
+    bikeId,
+    updateProperties,
+    { returnDocument: 'after' },
+  );
+  return result;
+};
+
 export const prouductServices = {
   createBikeIntoDB,
   getAllBikesfromDB,
   getASpecificBike,
+  updateABike,
 };

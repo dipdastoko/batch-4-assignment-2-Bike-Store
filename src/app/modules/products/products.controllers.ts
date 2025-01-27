@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { prouductServices } from './products.services';
 import { productsZodValidationSchema } from './products.validation';
 
+const date = new Date();
 const createABike = async (req: Request, res: Response) => {
-  const date = new Date();
   try {
     const bikeData = req.body;
     const zodParsedProductData = productsZodValidationSchema.parse(bikeData);
@@ -63,8 +63,33 @@ const getASpecificBike = async (req: Request, res: Response) => {
   }
 };
 
+const updateABike = async (req: Request, res: Response) => {
+  try {
+    const productId = req.params.productId;
+    const updateProperties = req.body;
+    updateProperties.updatedAt = date.toISOString();
+    const result = await prouductServices.updateABike(
+      productId,
+      updateProperties,
+    );
+    res.status(200).json({
+      message: 'Bike updated successfully',
+      success: true,
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message || 'Something went wrong!',
+      success: false,
+      error: error,
+      stack: error.stack,
+    });
+  }
+};
+
 export const BikeControllers = {
   createABike,
   getAllBikes,
   getASpecificBike,
+  updateABike,
 };
