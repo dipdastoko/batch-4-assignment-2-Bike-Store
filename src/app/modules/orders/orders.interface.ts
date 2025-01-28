@@ -1,8 +1,8 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 
 export type TOrders = {
   email: string;
-  product: ObjectId;
+  product: Types.ObjectId;
   qunatity: number;
   totalPrice: number;
 };
