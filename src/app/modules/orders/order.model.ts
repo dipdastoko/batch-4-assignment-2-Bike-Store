@@ -10,13 +10,21 @@ const OrderSchema = new Schema<TOrders>({
     type: Schema.Types.ObjectId,
     required: true,
   },
-  qunatity: {
+  quantity: {
     type: Number,
     required: true,
   },
   totalPrice: {
     type: Number,
     required: true,
+  },
+  createdAt: {
+    type: String,
+    required: false,
+  },
+  updatedAt: {
+    type: String,
+    required: false,
   },
 });
 

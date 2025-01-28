@@ -3,6 +3,8 @@ import { Types } from 'mongoose';
 export type TOrders = {
   email: string;
   product: Types.ObjectId;
-  qunatity: number;
+  quantity: number;
   totalPrice: number;
+  createdAt?: string;
+  updatedAt?: string;
 };

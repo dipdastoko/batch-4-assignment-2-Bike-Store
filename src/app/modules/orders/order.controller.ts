@@ -3,6 +3,8 @@ import { OrderServices } from './order.services';
 import { OrderValidationSchema } from './order.validation';
 import { Types } from 'mongoose';
 
+const date = new Date();
+
 const orderABike = async (req: Request, res: Response) => {
   try {
     const orderedBikeData = req.body;
@@ -11,6 +13,8 @@ const orderABike = async (req: Request, res: Response) => {
       ...zodParsedData,
       product: new Types.ObjectId(zodParsedData.product),
     };
+    transformedData.createdAt = date.toISOString();
+    transformedData.updatedAt = date.toISOString();
     const result = await OrderServices.insertOrderedBikeIntoDB(transformedData);
     res.status(200).json({
       message: 'Order Created Successfully',
