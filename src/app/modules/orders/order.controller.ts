@@ -22,7 +22,6 @@ const orderABike = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    console.log(error);
     res.status(500).json({
       message: error.message,
       success: false,
