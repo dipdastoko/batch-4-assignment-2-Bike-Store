@@ -46,8 +46,28 @@ const insertOrderedBikeIntoDB = async (orderedBikeData: TOrders) => {
   }
 };
 
-// const calculateRevenueFromOrders = async (bikeData: TProducts) => {};
+const calculateRevenueFromOrders = async () => {
+  const result = await OrderModel.aggregate([
+    // stage-1
+    {
+      $project: {
+        inidvidualOrderRevenue: { $multiply: ['$quantity', '$totalPrice'] },
+      },
+    },
+    // stage-2
+    {
+      $group: {
+        _id: null,
+        totalRevenue: { $sum: '$inidvidualOrderRevenue' },
+      },
+    },
+    // stage-3
+    { $project: { _id: 0, totalRevenue: 1 } },
+  ]);
+  return result[0];
+};
 
 export const OrderServices = {
   insertOrderedBikeIntoDB,
+  calculateRevenueFromOrders,
 };
