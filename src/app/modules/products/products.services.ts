@@ -20,7 +20,7 @@ const updateABike = async (bikeId: string, updateProperties: object) => {
   const result = await ProductsModel.findByIdAndUpdate(
     bikeId,
     updateProperties,
-    { returnDocument: 'after' },
+    { returnDocument: 'after' }, //this option is for sending the updated data as response after changing the data
   );
   return result;
 };

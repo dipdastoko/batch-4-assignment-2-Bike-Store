@@ -9,12 +9,16 @@ const orderABike = async (req: Request, res: Response) => {
   try {
     const orderedBikeData = req.body;
     const zodParsedData = OrderValidationSchema.parse(orderedBikeData);
+
+    //prdouctId comes as string, so we need to transform it into ObjectId
     const transformedData = {
       ...zodParsedData,
       product: new Types.ObjectId(zodParsedData.product),
     };
+
     transformedData.createdAt = date.toISOString();
     transformedData.updatedAt = date.toISOString();
+
     const result = await OrderServices.insertOrderedBikeIntoDB(transformedData);
     res.status(200).json({
       message: 'Order Created Successfully',
