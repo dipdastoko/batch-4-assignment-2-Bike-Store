@@ -1,51 +1,92 @@
-# Suburbia Packing List Generator
+# Bike Store API
 
-A smart AI-powered tool that creates personalized packing lists based on your travel plans and preferences.
+This project is a Node.js API developed using TypeScript, Express.js, and MongoDB. The API manages two collections: **Products** and **Orders**, where the product in this context is a bike.
 
-## Table of Contents
+## API Endpoints
 
-- [About](#about)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+### Products Endpoints
 
-## Features
+1. **Create a Bike**  
+   **POST**: `http://localhost:5000/api/products`
 
-- Personalized packing lists based on user inputs
-- Adaptive AI recommendations
-- Offline mode for travel convenience
+2. **Get a Specific Bike**  
+   **GET**: `http://localhost:5000/api/products/:productId`
 
-## Installation
+3. **Update a Bike**  
+   **PUT**: `http://localhost:5000/api/products/:productId`
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/username/repository-name.git
+4. **Delete a Bike**  
+   **DELETE**: `http://localhost:5000/api/products/:productId`
+
+5. **Get All Bikes**  
+   **GET**: `http://localhost:5000/api/products/`
+
+### Orders Endpoints
+
+1. **Order a Bike**  
+   **POST**: `http://localhost:5000/api/orders/`
+
+2. **Revenue Calculation**  
+   **GET**: `http://localhost:5000/api/orders/revenue`
+
+## Installation and Setup
+
+Follow these steps to install and run the project on your local machine:
+
+1. **Clone the repository**
+
+2. **Create a `.env` file**
+   Add the following environment variables:
+
+   ```env
+   PORT=your_desired_port
+   DATABASE_URL=your_mongodb_connection_string
    ```
-2. Navigate to the project directory:
-   ```bash
-   cd repository-name
+
+   Example:
+
+   ```env
+   PORT=5000
+   DATABASE_URL=mongodb://localhost:27017/bikestore
    ```
-3. Install dependencies:
+
+3. **Install dependencies:**
+
    ```bash
    npm install
    ```
-4. Run the project:
+
+4. **Build the project:**
+
    ```bash
-   npm start
+   npm run build
    ```
 
----
+5. **Run the project in production mode:**
 
-### **5. Usage Instructions**
+   ```bash
+   npm run start
+   ```
 
-Provide examples of how to use the project.
+6. **Run the project in development mode:**
+   ```bash
+   npm run start:dev
+   ```
 
-```markdown
 ## Usage
 
-1. Enter travel details like destination, duration, and preferences.
-2. Click 'Generate List' to get personalized recommendations.
-3. Save or export the list as needed.
-```
+- Use a tool like Postman or Insomnia to test the API endpoints.
+- Ensure your MongoDB instance is running and correctly connected using the `DATABASE_URL` specified in the `.env` file.
+
+## Project Structure
+
+- **src/**: Contains the source code of the application.
+- **dist/**: Holds the compiled JavaScript files after building.
+- **.env**: Environment configuration file (ignored by version control).
+
+## Available Scripts
+
+- `npm install`: Installs project dependencies.
+- `npm run build`: Compiles TypeScript files.
+- `npm run start`: Starts the application in production mode.
+- `npm run start:dev`: Starts the application in development mode.
