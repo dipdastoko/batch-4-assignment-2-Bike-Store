@@ -128,7 +128,3 @@ Follow these steps to install and run the project on your local machine:
 - `npm run lint:fix`: Fixes linting errors.
 - `npm run format`: Formats the codebase using Prettier.
 - `npm run test`: Placeholder for running tests.
-
-## License
-
-This project is licensed under [MIT License](LICENSE) if available.
